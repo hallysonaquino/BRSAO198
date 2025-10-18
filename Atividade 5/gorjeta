@@ -1,0 +1,14 @@
+def calcula_gorjeta(valor_conta, porcentagem_gorjeta):
+    desconto = porcentagem_gorjeta / 100
+    gorjeta = valor_conta * desconto
+    return gorjeta
+
+conta = 45.50
+porcentagem = 15
+
+gorjeta_total = calcula_gorjeta(conta, porcentagem)
+
+print("Conta deu:", conta)
+print("Voce quer dar", porcentagem, "% de gorjeta")
+print("O valor da gorjeta e:", round(gorjeta_total, 2))
+print("Total a pagar (conta + gorjeta):", round(conta + gorjeta_total, 2))

@@ -1,0 +1,17 @@
+print("CALCULADORA DE DESCONTO DE LOJA")
+preco_str = input("Preco original do produto (ex: 100.00): ")
+desconto_str = input("Porcentagem de desconto (ex: 15): ")
+
+preco_original = float(preco_str)
+porcentagem_desconto = float(desconto_str)
+
+fator_desconto = porcentagem_desconto / 100
+valor_do_desconto = preco_original * fator_desconto
+
+preco_final_bruto = preco_original - valor_do_desconto
+preco_final_formatado = round(preco_final_bruto, 2)
+valor_desconto_formatado = round(valor_do_desconto, 2)
+print("Preco Base: R$", preco_original)
+print("Desconto:", porcentagem_desconto, "%")
+print("Valor Descontado: R$", valor_desconto_formatado)
+print("PRECO FINAL: R$", preco_final_formatado)
