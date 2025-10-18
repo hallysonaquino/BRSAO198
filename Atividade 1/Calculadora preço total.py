@@ -1,0 +1,6 @@
+item = (input("Digite o nome do produto: "))
+preco_unit = float(input("Digite o preço do produto: "))
+quantidade = int(input("Qual a quantidade: "))
+print("Item: ", item)
+print("Quantidade: ", quantidade)
+print(f"Preço: {preco_unit:.2f}")
