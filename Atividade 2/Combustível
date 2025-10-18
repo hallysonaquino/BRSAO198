@@ -1,0 +1,8 @@
+distancia = 300
+combustivel_gasto = 25
+consumo_medio_bruto = distancia / combustivel_gasto
+consumo_medio_final = round(consumo_medio_bruto, 2)
+print("Dados da Viagem:")
+print("Distancia Total (km):", distancia)
+print("Combustivel Gasto (litros):", combustivel_gasto)
+print(consumo_medio_final)

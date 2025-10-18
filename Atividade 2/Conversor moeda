@@ -1,0 +1,12 @@
+valor_reais = 100.00
+taxa_dolar = 5.20
+taxa_euro = 6.15
+dolar_bruto = valor_reais / taxa_dolar
+euro_bruto = valor_reais / taxa_euro
+dolar_convertido = round(dolar_bruto, 2)
+euro_convertido = round(euro_bruto, 2)
+print("Reais:", valor_reais)
+print("Dolar:", taxa_dolar)
+print("Euro:", taxa_euro)
+print("Valor em Dolar:", dolar_convertido)
+print("Valor em Euro:", euro_convertido)
