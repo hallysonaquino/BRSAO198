@@ -1,0 +1,30 @@
+num1_str = input("Primeiro numero: ")
+operacao = input("Qual a operacao (+, -, *, /)? ")
+num2_str = input("Segundo numero: ")
+
+num1 = float(num1_str)
+num2 = float(num2_str)
+resultado = 0
+
+if operacao == '+':
+    resultado = num1 + num2
+elif operacao == '-':
+    resultado = num1 - num2
+elif operacao == '*':
+    resultado = num1 * num2
+elif operacao == '/':
+    if num2 != 0:
+        resultado = num1 / num2
+    else:
+        resultado = "NAO PODE DIVIDIR POR ZERO"
+else:
+    resultado = "OPERACAO INVALIDA"
+
+print("Conta feita:")
+print(num1_str, operacao, num2_str, "=")
+print("Resultado Final:")
+
+if isinstance(resultado, (float, int)):
+    print(round(resultado, 2))
+else:
+    print(resultado)

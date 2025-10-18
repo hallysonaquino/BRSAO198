@@ -1,0 +1,24 @@
+notas_str = input("Digite as notas dos alunos separadas por virgula (ex: 7.5, 8.0, 6.0): ")
+
+lista_de_notas_str = notas_str.split(',')
+
+soma_das_notas = 0.0
+quantidade_alunos = 0
+
+for nota_texto in lista_de_notas_str:
+    nota_limpa = nota_texto.strip()
+    if nota_limpa:
+        nota = float(nota_limpa)
+        soma_das_notas = soma_das_notas + nota
+        quantidade_alunos = quantidade_alunos + 1
+
+if quantidade_alunos > 0:
+    media_bruta = soma_das_notas / quantidade_alunos
+    media_turma = round(media_bruta, 2)
+else:
+    media_turma = "NENHUMA NOTA VALIDA FOI ENCONTRADA"
+
+print("Notas Registradas:", lista_de_notas_str)
+print("Total de Alunos:", quantidade_alunos)
+print("Soma das Notas:", round(soma_das_notas, 2))
+print(media_turma)

@@ -1,0 +1,20 @@
+senha = input("Digite a sua senha secreta: ")
+
+tamanho_ok = False
+tem_numero = False
+
+if len(senha) >= 8:
+    tamanho_ok = True
+
+for caractere in senha:
+    if caractere.isdigit():
+        tem_numero = True
+        break
+
+if tamanho_ok and tem_numero:
+    segura = "OK! SENHA DECENTE"
+else:
+    segura = "ATENCAO! SENHA MUITO FRACA"
+print("Tamanho Minimo (8 chars):", tamanho_ok)
+print("Contem Numero (0-9):", tem_numero)
+print("STATUS FINAL:", segura)

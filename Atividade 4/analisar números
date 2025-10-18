@@ -1,0 +1,31 @@
+print("ANALISADOR DE NUMEROS PARES E IMPARES")
+print("DIGITE 'FIM' PARA PARAR O PROGRAMA")
+
+cont_pares = 0
+cont_impares = 0
+entrada = ""
+
+while entrada.upper() != "FIM":
+    entrada = input("Digite um numero inteiro ou FIM: ")
+    
+    if entrada.upper() == "FIM":
+        break
+
+    try:
+        numero = int(entrada)
+        
+        if numero % 2 == 0:
+            print(numero, "é PAR")
+            cont_pares = cont_pares + 1
+        else:
+            print(numero, "é IMPAR")
+            cont_impares = cont_impares + 1
+            
+    except:
+        print("ISSO NAO É UM NUMERO INTEIRO VALIDO")
+
+print("===================================")
+print("FIM DA ANALISE")
+print("Total de Pares:", cont_pares)
+print("Total de Impares:", cont_impares)
+print("===================================")
