@@ -1,0 +1,47 @@
+import requests
+
+print("CONSULTA DE ENDERECO POR CEP AMADORA")
+print("====================================")
+
+cep_digitado = input("Digite o CEP (somente numeros): ").strip()
+
+if not cep_digitado.isdigit() or len(cep_digitado) != 8:
+    print("====================================")
+    print("ERRO: O CEP precisa ter 8 digitos e so pode ter numeros.")
+    print("====================================")
+else:
+    url = f"https://viacep.com.br/ws/{cep_digitado}/json/"
+
+    try:
+        resposta = requests.get(url)
+        resposta.raise_for_status()
+        
+        dados = resposta.json()
+        
+        if 'erro' in dados and dados['erro']:
+            print("====================================")
+            print("ERRO: CEP nao encontrado na base de dados.")
+            print("====================================")
+        else:
+            logradouro = dados.get('logradouro', 'Nao Encontrado')
+            bairro = dados.get('bairro', 'Nao Encontrado')
+            cidade = dados.get('localidade', 'Nao Encontrado')
+            estado = dados.get('uf', 'Nao Encontrado')
+
+            print("------------------------------------")
+            print("CEP:", cep_digitado)
+            print("Logradouro:", logradouro)
+            print("Bairro:", bairro)
+            print("Cidade:", cidade)
+            print("Estado:", estado)
+            print("------------------------------------")
+            
+    except requests.exceptions.RequestException:
+        print("====================================")
+        print("FALHA DE CONEXAO OU REQUISICAO.")
+        print("Verifique sua internet ou o endereco da API.")
+        print("====================================")
+    except:
+        print("====================================")
+        print("ERRO DESCONHECIDO AO PROCESSAR OS DADOS.")
+        print("====================================")

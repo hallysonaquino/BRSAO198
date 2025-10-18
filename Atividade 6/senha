@@ -1,0 +1,42 @@
+import random
+import string
+
+print("=====================================")
+
+tamanho_str = input("Quantos caracteres voce quer na senha (minimo 8): ")
+
+try:
+    tamanho = int(tamanho_str)
+except:
+    print("ERRO: Isso nao e um numero.")
+    tamanho = 12
+
+if tamanho < 8:
+    print("AVISO: Senha muito curta.")
+    tamanho = 8
+
+letras_maiusculas = string.ascii_uppercase
+letras_minusculas = string.ascii_lowercase
+numeros = string.digits
+simbolos = string.punctuation
+
+tudo_junto = letras_maiusculas + letras_minusculas + numeros + simbolos
+
+senha_lista = []
+senha_lista.append(random.choice(letras_maiusculas))
+senha_lista.append(random.choice(letras_minusculas))
+senha_lista.append(random.choice(numeros))
+senha_lista.append(random.choice(simbolos))
+
+for i in range(tamanho - 4):
+    senha_lista.append(random.choice(tudo_junto))
+
+random.shuffle(senha_lista)
+
+senha_final = "".join(senha_lista)
+
+print("-------------------------------------")
+print("Tamanho Escolhido:", tamanho)
+print("SENHA GERADA AUTOMATICAMENTE:")
+print(senha_final)
+print("-------------------------------------")

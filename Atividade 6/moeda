@@ -1,0 +1,57 @@
+import requests
+import time
+from datetime import datetime
+
+print("CONSULTA DE COTACAO DE MOEDA CONTRA O REAL")
+print("==========================================")
+
+moeda_escolhida = input("Digite o codigo da moeda (ex: USD, EUR, BTC): ").upper().strip()
+
+PAR_COTACAO = f"{moeda_escolhida}-BRL"
+URL_API = f"https://economia.awesomeapi.com.br/json/last/{PAR_COTACAO}"
+
+try:
+    resposta = requests.get(URL_API)
+    resposta.raise_for_status()
+
+    dados = resposta.json()
+
+    if PAR_COTACAO not in dados:
+        print("==========================================")
+        print("ERRO: Moeda nao encontrada ou codigo invalido.")
+        print("Tente um codigo como USD, EUR ou BTC.")
+        print("==========================================")
+    else:
+        info = dados[PAR_COTACAO]
+        
+        # O campo 'bid' e o valor atual de compra
+        valor_atual = float(info['bid'])
+        valor_maximo = float(info['high'])
+        valor_minimo = float(info['low'])
+        
+        timestamp_atualizacao = int(info['timestamp'])
+        data_atualizacao = datetime.fromtimestamp(timestamp_atualizacao).strftime('%d/%m/%Y %H:%M:%S')
+
+        print("------------------------------------------")
+        print("COTACAO DE", info['name'])
+        print("------------------------------------------")
+        print("Valor Atual de Compra (BRL): R$ {:.4f}".format(valor_atual))
+        print("Maxima do Dia:", "R$ {:.4f}".format(valor_maximo))
+        print("Minima do Dia:", "R$ {:.4f}".format(valor_minimo))
+        print("Ultima Atualizacao:", data_atualizacao)
+        print("------------------------------------------")
+
+except requests.exceptions.RequestException:
+    print("==========================================")
+    print("FALHA DE CONEXAO OU REQUISICAO.")
+    print("Verifique sua internet ou o endereco da API.")
+    print("==========================================")
+except (ValueError, KeyError):
+    print("==========================================")
+    print("ERRO: Nao consegui processar os dados recebidos da API.")
+    print("A estrutura pode ter mudado.")
+    print("==========================================")
+except:
+    print("==========================================")
+    print("ACONTECEU UM ERRO MISTERIOSO NO PROGRAMA.")
+    print("==========================================")

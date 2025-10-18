@@ -1,0 +1,37 @@
+import requests
+
+URL_API = ""
+
+try:
+    resposta = requests.get(URL_API)
+    resposta.raise_for_status()
+
+    dados = resposta.json()
+    usuario = dados['results'][0]
+    
+    nome = usuario['name']['first'] + " " + usuario['name']['last']
+    email = usuario['email']
+    pais = usuario['location']['country']
+
+    print("====================================")
+    print("USUARIO FICTICIO ENCONTRADO")
+    print("------------------------------------")
+    print("Nome:", nome)
+    print("Email:", email)
+    print("Pais:", pais)
+    print("====================================")
+
+except requests.exceptions.RequestException:
+    print("====================================")
+    print("FALHA AO CONECTAR NA API DO USUARIO")
+    print("Verifique sua internet ou o endereco da API.")
+    print("====================================")
+except (KeyError, IndexError):
+    print("====================================")
+    print("ERRO: A estrutura dos dados da API mudou ou esta errada.")
+    print("Nao consegui ler o nome, email ou pais.")
+    print("====================================")
+except:
+    print("====================================")
+    print("Tente de novo se tiver coragem.")
+    print("====================================")
